@@ -1,0 +1,14 @@
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Minigame-Crackers\Worlde-Crkr\bin\Debug\net10.0\Worlde-Crkr.exe
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Minigame-Crackers\Worlde-Crkr\bin\Debug\net10.0\Worlde-Crkr.deps.json
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Minigame-Crackers\Worlde-Crkr\bin\Debug\net10.0\Worlde-Crkr.runtimeconfig.json
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Minigame-Crackers\Worlde-Crkr\bin\Debug\net10.0\Worlde-Crkr.dll
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Minigame-Crackers\Worlde-Crkr\bin\Debug\net10.0\Worlde-Crkr.pdb
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Minigame-Crackers\Worlde-Crkr\obj\Debug\net10.0\Worlde-Crkr.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Minigame-Crackers\Worlde-Crkr\obj\Debug\net10.0\Worlde-Crkr.AssemblyInfoInputs.cache
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Minigame-Crackers\Worlde-Crkr\obj\Debug\net10.0\Worlde-Crkr.AssemblyInfo.cs
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Minigame-Crackers\Worlde-Crkr\obj\Debug\net10.0\Worlde-Crkr.csproj.CoreCompileInputs.cache
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Minigame-Crackers\Worlde-Crkr\obj\Debug\net10.0\Worlde-Crkr.dll
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Minigame-Crackers\Worlde-Crkr\obj\Debug\net10.0\refint\Worlde-Crkr.dll
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Minigame-Crackers\Worlde-Crkr\obj\Debug\net10.0\Worlde-Crkr.pdb
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Minigame-Crackers\Worlde-Crkr\obj\Debug\net10.0\Worlde-Crkr.genruntimeconfig.cache
+C:\Users\Seanc\OneDrive\Documents\VS_Code_Workspace\Minigame-Crackers\Worlde-Crkr\obj\Debug\net10.0\ref\Worlde-Crkr.dll
