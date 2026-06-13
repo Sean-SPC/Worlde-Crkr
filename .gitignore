@@ -1,8 +1,7 @@
 # Build outputs
 bin/
 obj/
-GUI/bin/
-GUI/obj/
+GUI/
 
 # Visual Studio / Rider caches
 .vs/

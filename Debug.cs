@@ -18,8 +18,11 @@ class Debug
         // Getting Random Word For Answer
         if (debugAnswer == "_0") { debugAnswer = wordList[new Random().Next(0, wordList.Count)]; }
         Console.WriteLine("\nAnswer: " + debugAnswer);
+
+        int iteration = 1;
         while (true)
         {
+            Console.WriteLine("\n| Iteration " + iteration + " |");
             if (sleepTime != 0) { Thread.Sleep(sleepTime); }
 
             // Input Word
@@ -32,7 +35,7 @@ class Debug
             Console.WriteLine(string.Join(", ", output));
 
             // Check For Answer
-            if (output.All(x => x == 1)) { Console.WriteLine("\nWord Found! : " + input); break; }
+            if (output.All(x => x == 1)) { Console.WriteLine("\nWord Found! {" + iteration + "} : " + input); break; }
 
             // Handle Output
             HandleOutput(input, output);
@@ -49,6 +52,8 @@ class Debug
 
             // Filter Word List
             wordList.RemoveAll(word => !Regex.IsMatch(word, regexPattern));
+
+            iteration++;
         }
     }
 
