@@ -1,1 +1,1 @@
-﻿HTTP_Handler.Main().GetAwaiter().GetResult();
+﻿Debug.run();

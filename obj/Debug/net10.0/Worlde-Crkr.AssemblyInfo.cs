@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Worlde-Crkr")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+43a3d8df1fd6bbab74b99161a4167cb887829a2e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Worlde-Crkr")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Worlde-Crkr")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
