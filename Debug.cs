@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 
 class Debug
 {
-    // Reading Word List of Five Letter Words
     private static List<string> wordList = File.ReadAllLines("five-ltr-words.txt").ToList();
     // Regex For Each Character Index
     private static List<string> indexRegex = Enumerable.Repeat("[^1]", 5).ToList();
