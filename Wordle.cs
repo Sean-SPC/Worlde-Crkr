@@ -8,7 +8,6 @@ class Wordle
     private static List<string> indexRegex = Enumerable.Repeat("[^1]", 5).ToList();
     private static string regexPattern = "";
     private static string containRegex = "";
-    private static List<char> containsList = new List<char>();
 
     public static void run()
     {
@@ -73,10 +72,7 @@ class Wordle
                 if (str.Length != 5) { throw new Exception("Invalid String: Not 5 Characters"); }
                 valid = true;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            catch (Exception e) { Console.WriteLine(e.Message); }
         }
         while (!valid);
 
@@ -102,10 +98,7 @@ class Wordle
                 }
                 valid = true;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            catch (Exception e) { Console.WriteLine(e.Message); }
         }
         while (!valid);
 
@@ -121,10 +114,15 @@ class Wordle
             if (output[x] == 1) { indexRegex[x] = input[x].ToString(); }
             // 0 : character in word, in wrong place
             if (output[x] == 0) {
-
                 indexRegex[x] = indexRegex[x].Insert(3, input[x].ToString());
-                // If Contains Regex Does Not Already Exist for Letter, Add E.g. (?=.*a)
-                if (!containsList.Contains(input[x])) { containRegex += $"(?=.*{input[x]})"; }
+                int i = containRegex.IndexOf(input[x]);
+                // If Contains Regex Does Not Already Exist for Letter, Add, E.g. (?=.*a)
+                if (i != -1) 
+                { 
+                    if (checkedLetters.Contains(input[x])) { containRegex = containRegex.Insert(i+1, ".*" + input[x]); }
+                }
+                // Else, Append to Double, E.g. (?=.*a.*a)
+                else { containRegex += $"(?=.*{input[x]})"; }
             }
             // -1 : character not in word
             if (output[x] == -1)
