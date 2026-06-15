@@ -3,13 +3,12 @@ using System.Text.RegularExpressions;
 
 class Wordle
 {
-    private static List<string> wordList = File.ReadAllLines("five-ltr-words.txt").ToList();
     // Regex For Each Character Index
     private static List<string> indexRegex = Enumerable.Repeat("[^1]", 5).ToList();
     private static string regexPattern = "";
     private static string containRegex = "";
 
-    public static void run()
+    public static void run(Dictionary<string, int> wordList)
     {
         PrintTitle();
 
@@ -18,8 +17,11 @@ class Wordle
         {
             Console.WriteLine("\n| Iteration " + iteration + " |\n");
 
+            // Simulate Word List For Best Score
+            wordList = Score.Simulate(wordList);
+
             // Recommend Word
-            if(iteration != 1) { Console.WriteLine("Recommendation: " + wordList[0]); }
+            Console.WriteLine("Recommendation: " + wordList.First().Key);
 
             // Input Word
             string input = GetUserInput();
@@ -39,8 +41,10 @@ class Wordle
             foreach (string str in indexRegex) { regexPattern += str; }
             regexPattern += "$";
 
-            // Filter Word List
-            wordList.RemoveAll(word => !Regex.IsMatch(word, regexPattern));
+            // Filter Word Dictionary
+            wordList = wordList
+                .Where(x => Regex.IsMatch(x.Key, regexPattern))
+                .ToDictionary(x => x.Key, x => x.Value);
 
             iteration++;
         }
@@ -114,7 +118,7 @@ class Wordle
             if (output[x] == 1) { indexRegex[x] = input[x].ToString(); }
             // 0 : character in word, in wrong place
             if (output[x] == 0) {
-                indexRegex[x] = indexRegex[x].Insert(3, input[x].ToString());
+                if(!indexRegex.Contains(input[x].ToString())) { indexRegex[x] = indexRegex[x].Insert(3, input[x].ToString()); }
                 int i = containRegex.IndexOf(input[x]);
                 // If Contains Regex Does Not Already Exist for Letter, Add, E.g. (?=.*a)
                 if (i != -1) 
@@ -128,14 +132,17 @@ class Wordle
             if (output[x] == -1)
             {
                 // If Letter Already Checked But Is Not At Current Index, Only Mark Index
-                if (checkedLetters.Contains(input[x])) { indexRegex[x] = indexRegex[x].Insert(3, input[x].ToString()); }
+                if (checkedLetters.Contains(input[x])) { 
+                    if(!indexRegex[x].Contains(input[x])) { indexRegex[x] = indexRegex[x].Insert(3, input[x].ToString()); } 
+                }
                 // Else, If letter Not Already Checked, Mark All Indexes
                 else
                 {
                     for (int y = 0; y < 5; y++)
                     {
                         // Skipping Indexes With Found Letter (Regex Length = 1 E.g. "a" not "[^1a...]")
-                        if (indexRegex[y].Length > 1) { indexRegex[y] = indexRegex[y].Insert(3, input[x].ToString()); }
+                        if (indexRegex[y].Length > 1) { 
+                            if(!indexRegex[y].Contains(input[x])) { indexRegex[y] = indexRegex[y].Insert(3, input[x].ToString()); } }
                     }
                 }
             }

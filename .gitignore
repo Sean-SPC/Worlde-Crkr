@@ -10,3 +10,6 @@ GUI/
 # .NET build artifacts
 *.user
 *.suo
+
+# Output Files
+score.txt

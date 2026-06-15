@@ -1,20 +1,20 @@
 using System.Formats.Asn1;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 
 class Debug
 {
-    private static List<string> wordList = File.ReadAllLines("five-ltr-words.txt").ToList();
     // Regex For Each Character Index
     private static List<string> indexRegex = Enumerable.Repeat("[^1]", 5).ToList();
     private static string regexPattern = "";
     private static string containRegex = "";
 
-    public static void run(string debugAnswer = "_0", int sleepTime = 0)
+    public static void run(Dictionary<string, int> wordList, string debugAnswer = "_0", int sleepTime = 0)
     {
         PrintTitle();
 
         // Getting Random Word For Answer
-        if (debugAnswer == "_0") { debugAnswer = wordList[new Random().Next(0, wordList.Count)]; }
+        if (debugAnswer == "_0") { debugAnswer = wordList.ElementAt(new Random().Next(0, wordList.Count)).Key; }
         Console.WriteLine("\nAnswer: " + debugAnswer);
 
         int iteration = 1;
@@ -23,9 +23,12 @@ class Debug
             Console.WriteLine("\n| Iteration " + iteration + " |");
             if (sleepTime != 0) { Thread.Sleep(sleepTime); }
 
+            // Simulate Word List For Best Score
+            wordList = Score.Simulate(wordList);
+
             // Input Word
-            string input = wordList[0];     // Use Top of Wordlist
-            Console.WriteLine("\nInput: " + input);
+            string input = wordList.First().Key;     // Use Top of Wordlist
+            Console.WriteLine("\nInput: " + input + " (Recommended)");
 
             // Check Word Against Test Answer
             List<int> output = GetOutput(input, debugAnswer);
@@ -48,8 +51,10 @@ class Debug
             Console.WriteLine("Regex: " + regexPattern);
             Console.WriteLine("Match: " + Regex.IsMatch(input, regexPattern));
 
-            // Filter Word List
-            wordList.RemoveAll(word => !Regex.IsMatch(word, regexPattern));
+            // Filter Word Dictionary
+            wordList = wordList
+                .Where(x => Regex.IsMatch(x.Key, regexPattern))
+                .ToDictionary(x => x.Key, x => x.Value);
 
             iteration++;
         }
@@ -107,7 +112,7 @@ class Debug
             if (output[x] == 1) { indexRegex[x] = input[x].ToString(); }
             // 0 : character in word, in wrong place
             if (output[x] == 0) {
-                indexRegex[x] = indexRegex[x].Insert(3, input[x].ToString());
+                if(!indexRegex.Contains(input[x].ToString())) { indexRegex[x] = indexRegex[x].Insert(3, input[x].ToString()); }
                 int i = containRegex.IndexOf(input[x]);
                 // If Contains Regex Does Not Already Exist for Letter, Add, E.g. (?=.*a)
                 if (i != -1) 
@@ -121,14 +126,17 @@ class Debug
             if (output[x] == -1)
             {
                 // If Letter Already Checked But Is Not At Current Index, Only Mark Index
-                if (checkedLetters.Contains(input[x])) { indexRegex[x] = indexRegex[x].Insert(3, input[x].ToString()); }
+                if (checkedLetters.Contains(input[x])) { 
+                    if(!indexRegex[x].Contains(input[x])) { indexRegex[x] = indexRegex[x].Insert(3, input[x].ToString()); } 
+                }
                 // Else, If letter Not Already Checked, Mark All Indexes
                 else
                 {
                     for (int y = 0; y < 5; y++)
                     {
                         // Skipping Indexes With Found Letter (Regex Length = 1 E.g. "a" not "[^1a...]")
-                        if (indexRegex[y].Length > 1) { indexRegex[y] = indexRegex[y].Insert(3, input[x].ToString()); }
+                        if (indexRegex[y].Length > 1) { 
+                            if(!indexRegex[y].Contains(input[x])) { indexRegex[y] = indexRegex[y].Insert(3, input[x].ToString()); } }
                     }
                 }
             }
