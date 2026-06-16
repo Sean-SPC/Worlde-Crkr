@@ -22,7 +22,7 @@ class Score
         // File.WriteAllText("score.txt", "");
         // foreach (var word in wordList)
         // {
-        //     File.AppendAllText("score.txt", word.Key + " : " + word.Value + "\n");
+        //     File.AppendAllText("five-ltr-scores.txt", word.Key + " : " + word.Value + "\n");
         // }
 
         return wordList;

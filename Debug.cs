@@ -23,9 +23,6 @@ class Debug
             Console.WriteLine("\n| Iteration " + iteration + " |");
             if (sleepTime != 0) { Thread.Sleep(sleepTime); }
 
-            // Simulate Word List For Best Score
-            wordList = Score.Simulate(wordList);
-
             // Input Word
             string input = wordList.First().Key;     // Use Top of Wordlist
             Console.WriteLine("\nInput: " + input + " (Recommended)");
@@ -57,6 +54,9 @@ class Debug
                 .ToDictionary(x => x.Key, x => x.Value);
 
             iteration++;
+
+            // Simulate Word List For Best Score
+            wordList = Score.Simulate(wordList);
         }
     }
 

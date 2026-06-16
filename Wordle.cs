@@ -17,9 +17,6 @@ class Wordle
         {
             Console.WriteLine("\n| Iteration " + iteration + " |\n");
 
-            // Simulate Word List For Best Score
-            wordList = Score.Simulate(wordList);
-
             // Recommend Word
             Console.WriteLine("Recommendation: " + wordList.First().Key);
 
@@ -47,6 +44,9 @@ class Wordle
                 .ToDictionary(x => x.Key, x => x.Value);
 
             iteration++;
+
+            // Simulate Word List For Best Score
+            wordList = Score.Simulate(wordList);
         }
     }
 
